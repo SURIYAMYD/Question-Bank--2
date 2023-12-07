@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: gray;
+    }
+
+    #form-editor {
+      max-width: 600px;
+      margin: 0 auto;
+      background-image: linear-gradient(to bottom right, yellow, red);
+      display: flex;
+     /*align-items: center;
+      justify-content:center;*/
+      flex-direction: column;
+      margin-top: 10px;
+      border-radius:15px ;
+    }
+
+    #form-editor{
+    
+        text-align: center;
+        background-color: rgb(216, 26, 26);
+        padding: 10px;
+        margin-bottom: 5px;
+
+    }
+    .question {
+      margin-bottom: 20px;
+      display: flex;
+     /*align-items: center;
+      justify-content:center;*/
+      flex-direction: column;
+      margin: 10px;
+    }
+
+    #preview {
+      margin-top: 20px;
+      border: 3px solid #ccc;
+      padding: 10px;
+      border-radius: 7px;
+    }
+    input[type=text]{
+        padding: 10px;
+        margin: 5px;
+        outline: none;
+        border: 3px solid green;
+        border-radius: 5px;
+        background-color: ;
+
+    }
+    select{
+      
+      padding: 10px;
+        margin: 5px;
+        outline: none;
+        border: 3px solid green;
+        border-radius: 5px;
+
+    }
+    button{
+      width: 150px;
+      height: 30px;
+       padding: 5px;
+        margin: 5px;
+        outline: none;
+        border-radius: 15px;
+        background-color: green;
+        border: none;
+        margin-left: 200px;
+        text-transform: capitalize;
+        color: white;
+    }
+    label{
+      text-transform: uppercase;
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="form-editor">
+    <h2>Form Editor</h2>
+<!--  <label for="headerImage">Header Image URL:</label>
+    <input type="text" id="headerImage" placeholder="Enter URL">
+    <button onclick="addHeaderImage()">Add Header Image</button>-->
+
+    <div class="question">
+      <label for="questionText">Question Text:</label>
+      <input type="text" id="questionText" placeholder="Enter question text">
+      
+      <label for="questionType">Question Type:</label>
+      <select id="questionType">
+        <option value="text">Text</option>
+        <option value="textarea">Textarea</option>
+        <option value="radio">Radio</option>
+        <option value="checkbox">Checkbox</option>
+      </select>
+
+      <label for="questionImage">Question Image URL:</label>
+      <input type="text" id="questionImage" placeholder="Enter URL">
+
+      <button onclick="addQuestion()">Add Question</button>
+    </div>
+
+    <div id="preview">
+      <h2>Form Preview</h2>
+      <div id="headerPreview"></div>
+      <div id="questionsPreview"></div>
+    </div>
+  </div>
+
+  <script>
+    function addHeaderImage() {
+      const headerImageURL = document.getElementById('headerImage').value;
+      const headerPreview = document.getElementById('headerPreview');
+      headerPreview.innerHTML = `<img src="${headerImageURL}" alt="Header Image">`;
+    }
+
+    function addQuestion() {
+      const questionText = document.getElementById('questionText').value;
+      const questionType = document.getElementById('questionType').value;
+      const questionImageURL = document.getElementById('questionImage').value;
+
+      const questionsPreview = document.getElementById('questionsPreview');
+      const questionElement = document.createElement('div');
+
+      if (questionImageURL) {
+        questionElement.innerHTML = `<img src="${questionImageURL}" alt="Question Image">`;
+      }
+
+      questionElement.innerHTML += `<p>${questionText} (Type: ${questionType})</p>`;
+      questionsPreview.appendChild(questionElement);
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
